@@ -1,9 +1,6 @@
-from django.contrib.auth import get_user_model
-from django.db.models import Avg, Count
-from rest_framework import serializers
-
 from courses.models import Course, Group, Lesson
-from users.models import Subscription
+from django.contrib.auth import get_user_model
+from rest_framework import serializers
 
 User = get_user_model()
 
@@ -15,11 +12,7 @@ class LessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lesson
-        fields = (
-            'title',
-            'link',
-            'course'
-        )
+        fields = ("title", "link", "course")
 
 
 class CreateLessonSerializer(serializers.ModelSerializer):
@@ -27,11 +20,7 @@ class CreateLessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lesson
-        fields = (
-            'title',
-            'link',
-            'course'
-        )
+        fields = ("title", "link", "course")
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -40,9 +29,9 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'first_name',
-            'last_name',
-            'email',
+            "first_name",
+            "last_name",
+            "email",
         )
 
 
@@ -53,6 +42,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
+        fields = "__all__"
 
 
 class CreateGroupSerializer(serializers.ModelSerializer):
@@ -60,10 +50,7 @@ class CreateGroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
-        fields = (
-            'title',
-            'course',
-        )
+        fields = ("title",)
 
 
 class MiniLessonSerializer(serializers.ModelSerializer):
@@ -71,9 +58,7 @@ class MiniLessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lesson
-        fields = (
-            'title',
-        )
+        fields = ("title",)
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -104,16 +89,16 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = (
-            'id',
-            'author',
-            'title',
-            'start_date',
-            'price',
-            'lessons_count',
-            'lessons',
-            'demand_course_percent',
-            'students_count',
-            'groups_filled_percent',
+            "id",
+            "author",
+            "title",
+            "start_date",
+            "price",
+            "lessons_count",
+            "lessons",
+            "demand_course_percent",
+            "students_count",
+            "groups_filled_percent",
         )
 
 
@@ -122,3 +107,4 @@ class CreateCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
+        fields = ("author", "title", "start_date", "price")
