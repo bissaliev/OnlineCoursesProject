@@ -78,6 +78,10 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        # Если пользователь без прав is_staff,
+        # то исключаем курсы с флагом available=False
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(available=True)
         # Исключаем курсы, которые текущий пользователь уже приобрел
         queryset = queryset.exclude(subscriptions__student=self.request.user)
         # Добавление в запрос количества уроков на курсе
