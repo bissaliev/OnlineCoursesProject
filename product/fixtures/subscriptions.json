@@ -1,0 +1,50 @@
+[
+{
+    "model": "users.subscription",
+    "pk": 24,
+    "fields": {
+        "course": 1,
+        "student": 2
+    }
+},
+{
+    "model": "users.subscription",
+    "pk": 25,
+    "fields": {
+        "course": 1,
+        "student": 4
+    }
+},
+{
+    "model": "users.subscription",
+    "pk": 26,
+    "fields": {
+        "course": 2,
+        "student": 8
+    }
+},
+{
+    "model": "users.subscription",
+    "pk": 28,
+    "fields": {
+        "course": 2,
+        "student": 11
+    }
+},
+{
+    "model": "users.subscription",
+    "pk": 29,
+    "fields": {
+        "course": 2,
+        "student": 4
+    }
+},
+{
+    "model": "users.subscription",
+    "pk": 30,
+    "fields": {
+        "course": 2,
+        "student": 2
+    }
+}
+]

@@ -1,0 +1,29 @@
+[
+{
+    "model": "courses.lesson",
+    "pk": 1,
+    "fields": {
+        "title": "Урок №1",
+        "link": "http://127.0.0.1:8000/admin/courses/lesson/add/",
+        "course": 1
+    }
+},
+{
+    "model": "courses.lesson",
+    "pk": 2,
+    "fields": {
+        "title": "Урок №2",
+        "link": "http://127.0.0.1:8000/admin/courses/lesson/add/2/",
+        "course": 1
+    }
+},
+{
+    "model": "courses.lesson",
+    "pk": 3,
+    "fields": {
+        "title": "Урок №3",
+        "link": "http://127.0.0.1:8000/admin/courses/lesson/add/3.",
+        "course": 1
+    }
+}
+]

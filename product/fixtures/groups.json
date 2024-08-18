@@ -1,0 +1,198 @@
+[
+    {
+        "model": "courses.group",
+        "pk": 1,
+        "fields": {
+            "title": "Группа №1",
+            "course": 2,
+            "students": [
+                11,
+                8
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 2,
+        "fields": {
+            "title": "Группа №2",
+            "course": 2,
+            "students": [
+                11,
+                4
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 3,
+        "fields": {
+            "title": "Группа №3",
+            "course": 2,
+            "students": [
+                4,
+                2
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 4,
+        "fields": {
+            "title": "Группа №1",
+            "course": 1,
+            "students": [
+                11,
+                4
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 5,
+        "fields": {
+            "title": "Группа №2",
+            "course": 1,
+            "students": [
+                4,
+                8
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 6,
+        "fields": {
+            "title": "Группа №3",
+            "course": 1,
+            "students": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 7,
+        "fields": {
+            "title": "Группа №1",
+            "course": 3,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 8,
+        "fields": {
+            "title": "Группа №2",
+            "course": 3,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 9,
+        "fields": {
+            "title": "Группа №3",
+            "course": 3,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 10,
+        "fields": {
+            "title": "Группа №4",
+            "course": 1,
+            "students": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 11,
+        "fields": {
+            "title": "Группа №4",
+            "course": 2,
+            "students": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 12,
+        "fields": {
+            "title": "Группа №5",
+            "course": 2,
+            "students": [
+                10
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 13,
+        "fields": {
+            "title": "Группа №4",
+            "course": 3,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 14,
+        "fields": {
+            "title": "Группа №5",
+            "course": 3,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 15,
+        "fields": {
+            "title": "Группа №1",
+            "course": 4,
+            "students": [
+                6
+            ]
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 16,
+        "fields": {
+            "title": "Группа №2",
+            "course": 4,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 17,
+        "fields": {
+            "title": "Группа №3",
+            "course": 4,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 18,
+        "fields": {
+            "title": "Группа №4",
+            "course": 4,
+            "students": []
+        }
+    },
+    {
+        "model": "courses.group",
+        "pk": 19,
+        "fields": {
+            "title": "Группа №5",
+            "course": 4,
+            "students": []
+        }
+    }
+]

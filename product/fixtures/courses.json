@@ -1,0 +1,46 @@
+[
+{
+    "model": "courses.course",
+    "pk": 1,
+    "fields": {
+        "author": "Михаил Потапов",
+        "title": "Backend developer",
+        "start_date": "2024-03-03T12:00:00Z",
+        "price": 150000,
+        "available": true
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 2,
+    "fields": {
+        "author": "Михаил Потапов",
+        "title": "Python developer",
+        "start_date": "2024-03-03T12:00:00Z",
+        "price": 120000,
+        "available": true
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 3,
+    "fields": {
+        "author": "Иван Петров",
+        "title": "Онлайн курс",
+        "start_date": "2024-03-03T12:00:00Z",
+        "price": 56000,
+        "available": false
+    }
+},
+{
+    "model": "courses.course",
+    "pk": 4,
+    "fields": {
+        "author": "Юрий Морозов",
+        "title": "Frontend developer",
+        "start_date": "2024-03-03T12:00:00Z",
+        "price": 56000,
+        "available": true
+    }
+}
+]
