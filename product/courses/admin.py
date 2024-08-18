@@ -13,7 +13,7 @@ class GroupInline(admin.TabularInline):
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ["title", "available", "price", "start_date"]
+    list_display = ["id", "title", "available", "price", "start_date"]
     list_editable = ["available", "price", "start_date"]
     inlines = [LessonInline, GroupInline]
 
