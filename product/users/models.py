@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -62,3 +63,9 @@ class Subscription(models.Model):
                 fields=("course", "student"), name="unique_course_student"
             )
         ]
+
+    def clean(self) -> None:
+        if self.student.balance.bonus < self.course.price:
+            raise ValidationError(
+                "Недостаточно бонусов для подписки на этот курс."
+            )
