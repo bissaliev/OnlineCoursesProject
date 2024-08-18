@@ -38,11 +38,13 @@ class StudentSerializer(serializers.ModelSerializer):
 class GroupSerializer(serializers.ModelSerializer):
     """Список групп."""
 
-    # TODO Доп. задание
+    course = serializers.StringRelatedField(read_only=True)
+    students_count = serializers.ReadOnlyField()
+    students = StudentSerializer(many=True)
 
     class Meta:
         model = Group
-        fields = "__all__"
+        fields = ("id", "title", "course", "students_count", "students")
 
 
 class CreateGroupSerializer(serializers.ModelSerializer):
@@ -65,26 +67,10 @@ class CourseSerializer(serializers.ModelSerializer):
     """Список курсов."""
 
     lessons = MiniLessonSerializer(many=True, read_only=True)
-    lessons_count = serializers.SerializerMethodField(read_only=True)
-    students_count = serializers.SerializerMethodField(read_only=True)
-    groups_filled_percent = serializers.SerializerMethodField(read_only=True)
-    demand_course_percent = serializers.SerializerMethodField(read_only=True)
-
-    def get_lessons_count(self, obj):
-        """Количество уроков в курсе."""
-        return obj.lessons_count
-
-    def get_students_count(self, obj):
-        """Общее количество студентов на курсе."""
-        return obj.students_count
-
-    def get_groups_filled_percent(self, obj):
-        """Процент заполнения групп, если в группе максимум 30 чел.."""
-        return obj.groups_filled_percent
-
-    def get_demand_course_percent(self, obj):
-        """Процент приобретения курса."""
-        return obj.demand_course_percent
+    lessons_count = serializers.ReadOnlyField()
+    students_count = serializers.ReadOnlyField()
+    groups_filled_percent = serializers.ReadOnlyField()
+    demand_course_percent = serializers.ReadOnlyField()
 
     class Meta:
         model = Course
