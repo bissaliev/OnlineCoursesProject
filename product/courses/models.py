@@ -19,6 +19,7 @@ class Course(models.Model):
         verbose_name="Дата и время начала курса",
     )
     price = models.PositiveBigIntegerField(verbose_name="Стоимость курса")
+    available = models.BooleanField(default=False, verbose_name="Доступен")
 
     class Meta:
         verbose_name = "Курс"
