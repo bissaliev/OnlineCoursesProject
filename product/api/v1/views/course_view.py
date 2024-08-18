@@ -62,7 +62,10 @@ class GroupViewSet(viewsets.ModelViewSet):
             Course,
             id=self.kwargs.get("course_id"),
         )
-        return course.groups.all()
+        groups = course.groups.prefetch_related("students").annotate(
+            students_count=Count("students")
+        )
+        return groups
 
 
 class CourseViewSet(viewsets.ModelViewSet):
