@@ -1,3 +1,11 @@
+from django.contrib.auth import get_user_model
+from django.db.models import Avg, Count, ExpressionWrapper, IntegerField, Value
+from django.db.models.functions import Coalesce
+from django.shortcuts import get_object_or_404
+from rest_framework import permissions, status, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
 from api.v1.permissions import (
     IsStudentOrIsAdmin,
     ReadOnlyOrIsAdmin,
@@ -13,13 +21,6 @@ from api.v1.serializers.course_serializer import (
 )
 from api.v1.serializers.user_serializer import SubscriptionSerializer
 from courses.models import Course
-from django.contrib.auth import get_user_model
-from django.db.models import Avg, Count, ExpressionWrapper, IntegerField, Value
-from django.db.models.functions import Coalesce
-from django.shortcuts import get_object_or_404
-from rest_framework import permissions, status, viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
 
 User = get_user_model()
 
@@ -73,8 +74,6 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     queryset = Course.objects.prefetch_related("lessons")
     permission_classes = (ReadOnlyOrIsAdmin,)
-    # Количество всех пользователей на платформе
-    count_of_all_users = User.objects.count()
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -83,7 +82,10 @@ class CourseViewSet(viewsets.ModelViewSet):
         if not self.request.user.is_staff:
             queryset = queryset.filter(available=True)
         # Исключаем курсы, которые текущий пользователь уже приобрел
-        queryset = queryset.exclude(subscriptions__student=self.request.user)
+        if self.request.user.is_authenticated:
+            queryset = queryset.exclude(
+                subscriptions__student=self.request.user
+            )
         # Добавление в запрос количества уроков на курсе
         queryset = queryset.annotate(
             lessons_count=Count("lessons", distinct=True)
@@ -97,7 +99,7 @@ class CourseViewSet(viewsets.ModelViewSet):
             demand_course_percent=ExpressionWrapper(
                 Count("subscriptions", distinct=True)
                 * Value(100)
-                / self.count_of_all_users,
+                / User.objects.count(),
                 output_field=IntegerField(),
             )
         )
