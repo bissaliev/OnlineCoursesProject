@@ -1,11 +1,3 @@
-from django.contrib.auth import get_user_model
-from django.db.models import Avg, Count, ExpressionWrapper, IntegerField, Value
-from django.db.models.functions import Coalesce
-from django.shortcuts import get_object_or_404
-from rest_framework import permissions, status, viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
-
 from api.v1.permissions import (
     IsStudentOrIsAdmin,
     ReadOnlyOrIsAdmin,
@@ -21,6 +13,20 @@ from api.v1.serializers.course_serializer import (
 )
 from api.v1.serializers.user_serializer import SubscriptionSerializer
 from courses.models import Course
+from django.contrib.auth import get_user_model
+from django.db.models import (
+    Avg,
+    Count,
+    ExpressionWrapper,
+    F,
+    IntegerField,
+    Value,
+)
+from django.db.models.functions import Coalesce
+from django.shortcuts import get_object_or_404
+from rest_framework import permissions, status, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 User = get_user_model()
 
@@ -92,16 +98,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         )
         # Добавление в запрос количества подписчиков на курс
         queryset = queryset.annotate(
-            students_count=Count("subscriptions", distinct=True)
-        )
-        # Добавление в запрос процент приобретения продукта
-        queryset = queryset.annotate(
-            demand_course_percent=ExpressionWrapper(
-                Count("subscriptions", distinct=True)
-                * Value(100)
-                / User.objects.count(),
-                output_field=IntegerField(),
-            )
+            students_count=Count("subscriptions__student", distinct=True)
         )
         # Добавление в запрос процент заполнения групп
         queryset = queryset.annotate(
@@ -111,6 +108,13 @@ class CourseViewSet(viewsets.ModelViewSet):
                     output_field=IntegerField(),
                 ),
                 Value(0),
+            )
+        )
+        # Добавление в запрос процент приобретения продукта
+        queryset = queryset.annotate(
+            demand_course_percent=ExpressionWrapper(
+                F("students_count") * Value(100) / User.objects.count(),
+                output_field=IntegerField(),
             )
         )
         return queryset
