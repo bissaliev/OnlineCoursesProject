@@ -5,9 +5,11 @@ from django.db import models
 class Course(models.Model):
     """Модель продукта - курса."""
 
-    author = models.CharField(
-        max_length=250,
-        verbose_name="Автор",
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="courses",
+        verbose_name="Автор курса",
     )
     title = models.CharField(
         max_length=250,
@@ -18,13 +20,15 @@ class Course(models.Model):
         auto_now_add=False,
         verbose_name="Дата и время начала курса",
     )
-    price = models.PositiveBigIntegerField(verbose_name="Стоимость курса")
+    price = models.DecimalField(
+        "Стоимость курса", max_digits=10, decimal_places=2
+    )
     available = models.BooleanField(default=False, verbose_name="Доступен")
 
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
-        ordering = ("-id",)
+        ordering = ("start_date",)
 
     def __str__(self):
         return self.title
